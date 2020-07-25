@@ -10,6 +10,8 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #fafafa;
+  background: linear-gradient(rgba(255, 255, 255, 0.733), rgba(211, 211, 211, 0.822)), url(https://s1.ax1x.com/2020/07/10/UKVAPI.jpg) no-repeat;
+  background-size: cover;
 }
 
 .text {
@@ -54,5 +56,11 @@ ol {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 40px;
-  font-size:1.2em;
+  font-size: 1.2em;
+}
+
+@media screen and (max-width: 600px) {
+  .el-dialog {
+    width: 95vw !important;
+  }
 }
