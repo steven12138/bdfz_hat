@@ -1,0 +1,48 @@
+---
+layout: show
+permalink: /index.html
+---
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
+</head>
+
+<body>
+    <div id="app">
+        <el-card class="box-card">
+            <div slot="header" class="clearfix">
+                <span style="font-size:25px;">北大附中分院帽</span>
+                <el-button style="float: right; padding: 12px 0 3px 0" type="text">免责声明</el-button>
+            </div>
+            <el-row>
+                <el-image id="poster" src="./assets/img/poster.jpg"></el-image>
+            </el-row>
+            <el-row style="margin:5px 0;color:#7c7c7c">
+                <i class="el-icon-warning"></i>
+                点击即代表您同已同意免责声明
+            </el-row>
+            <el-row style="margin-top:5px;">
+                <el-button type="primary" id="start">点我开始</el-button>
+            </el-row>
+        </el-card>
+    </div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {}
+    })
+</script>
+
+</html>
