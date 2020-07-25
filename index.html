@@ -15,6 +15,8 @@ permalink: /index.html
 
 <body>
     <div id="app">
+        <div class="mask" style="position: absolute; top:0;left:0;width:100vw;height:100vh;background-color: white;"
+            v-if="notloaded"></div>
         <el-dialog modal :visible.sync="visible" title="免责声明">
             <!-- <h1 class="title">希悦模拟器免责声明</h1> -->
             <ol class="para" style="padding-inline-start: 25px;">
@@ -42,7 +44,8 @@ permalink: /index.html
                 点击即代表您同已同意免责声明
             </el-row>
             <el-row style="margin-top:5px;">
-                <el-button onmouseover="app.alert_info()" onmouseout="app.remove_info()" type="primary" id="start">点我开始</el-button>
+                <el-button onmouseover="app.alert_info()" onmouseout="app.remove_info()" type="primary" id="start">点我开始
+                </el-button>
             </el-row>
         </el-card>
     </div>
@@ -56,17 +59,17 @@ permalink: /index.html
         el: '#app',
         data: {
             visible: false,
-            read: false
+            read: false,
+            notloaded: false,
         },
         methods: {
-            alert_info:function(){
-                if(this.read) return;
-                document.querySelector('#alert_text').style.color="#F56C6C";
+            alert_info: function () {
+                if (this.read) return;
+                document.querySelector('#alert_text').style.color = "#F56C6C";
             },
-            remove_info:function(){
-                if(this.read) return;
-                
-                document.querySelector('#alert_text').style.color="#7c7c7c";
+            remove_info: function () {
+                if (this.read) return;
+                document.querySelector('#alert_text').style.color = "#7c7c7c";
             }
         }
     })
