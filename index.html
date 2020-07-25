@@ -37,9 +37,9 @@ permalink: /index.html
                 </el-button>
             </div>
             <el-row>
-                <el-image id="poster" src="./assets/img/poster.jpg"></el-image>
+                <el-image id="poster" src="./assets/img/poster.jpg" v-bind:title="message"></el-image>
             </el-row>
-            <el-row id="alert_text" style="margin:5px 0;color:#7c7c7c;transition: .25s all;">
+            <el-row id="alert_text" style="margin:5px 0;color:#7c7c7c;transition: .25s all;height:22px;">
                 <i class="el-icon-warning"></i>
                 点击即代表您同已同意免责声明
             </el-row>
@@ -61,14 +61,17 @@ permalink: /index.html
             visible: false,
             read: false,
             notloaded: false,
+            message:'您找到一个彩蛋，不过并没有什么用',
         },
         methods: {
             alert_info: function () {
                 if (this.read) return;
                 document.querySelector('#alert_text').style.color = "#F56C6C";
+                document.querySelector('#alert_text').style['font-size'] = "1.18em";
             },
             remove_info: function () {
                 if (this.read) return;
+                document.querySelector('#alert_text').style['font-size'] = "1em";
                 document.querySelector('#alert_text').style.color = "#7c7c7c";
             }
         }
