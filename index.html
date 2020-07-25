@@ -15,20 +15,34 @@ permalink: /index.html
 
 <body>
     <div id="app">
+        <el-dialog modal :visible.sync="visible" title="免责声明">
+            <!-- <h1 class="title">希悦模拟器免责声明</h1> -->
+            <ol class="para" style="padding-inline-start: 25px;">
+                <li>一切访问本网站并正常使用此网站功能的用户，均被视为已经仔细阅读本条款并表示完全同意。凡以任何方式使用本网站者，均被视为愿接受本网站相关声明和用户服务协议的约束。</li>
+                <li>用户使用本网站发表的言论以及转载的内容不代表本网站的任何意见与观点</li>
+                <li>本网站所呈现的结果仅供参考</li>
+                <li>此网站由用户转载的信息，皆有本网站的使用者提供。其真实性、准确性和合法性由信息发布人负责。本网站不做任何担保并不承担任何法律责任</li>
+                <li>用户明确并同意使用本网站所提供的服务产生的误解以及风险由其本人承担；因本网站的服务所产生的一切后果也有其本人承担，本网站对此不承担任何责任</li>
+                <li>本声明为涉及的问题参见国家法律，当本声明与国家法律产生冲突时，以国家相关法律法规为准</li>
+                <li>本声明的修改权、更新权和最终解释权均属本网站所有</li>
+            </ol>
+        </el-dialog>
         <el-card class="box-card">
             <div slot="header" class="clearfix">
                 <span style="font-size:25px;">北大附中分院帽</span>
-                <el-button style="float: right; padding: 12px 0 3px 0" type="text">免责声明</el-button>
+                <el-button style="float: right; padding: 12px 0 3px 0" type="text" @click="visible = true;read=true;">
+                    免责声明
+                </el-button>
             </div>
             <el-row>
                 <el-image id="poster" src="./assets/img/poster.jpg"></el-image>
             </el-row>
-            <el-row style="margin:5px 0;color:#7c7c7c">
+            <el-row id="alert_text" style="margin:5px 0;color:#7c7c7c;transition: .25s all;">
                 <i class="el-icon-warning"></i>
                 点击即代表您同已同意免责声明
             </el-row>
             <el-row style="margin-top:5px;">
-                <el-button type="primary" id="start">点我开始</el-button>
+                <el-button onmouseover="app.alert_info()" onmouseout="app.remove_info()" type="primary" id="start">点我开始</el-button>
             </el-row>
         </el-card>
     </div>
@@ -40,8 +54,21 @@ permalink: /index.html
 <script>
     var app = new Vue({
         el: '#app',
-        data: {},
-        methods: {}
+        data: {
+            visible: false,
+            read: false
+        },
+        methods: {
+            alert_info:function(){
+                if(this.read) return;
+                document.querySelector('#alert_text').style.color="#F56C6C";
+            },
+            remove_info:function(){
+                if(this.read) return;
+                
+                document.querySelector('#alert_text').style.color="#7c7c7c";
+            }
+        }
     })
 </script>
 
