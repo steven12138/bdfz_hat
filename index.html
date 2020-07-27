@@ -41,10 +41,10 @@ permalink: /index.html
             </el-row>
             <el-row id="alert_text" style="margin:5px 0;color:#7c7c7c;transition: .25s all;height:22px;">
                 <i class="el-icon-warning"></i>
-                点击即代表您同已同意免责声明
+                点击即代表您已同意免责声明
             </el-row>
             <el-row style="margin-top:5px;">
-                <el-button onmouseover="app.alert_info()" onmouseout="app.remove_info()" type="primary" id="start">点我开始
+                <el-button @click="handle_start" onmouseover="app.alert_info()" onmouseout="app.remove_info()" type="primary" id="start">点我开始
                 </el-button>
             </el-row>
         </el-card>
@@ -73,6 +73,10 @@ permalink: /index.html
                 if (this.read) return;
                 document.querySelector('#alert_text').style['font-size'] = "1em";
                 document.querySelector('#alert_text').style.color = "#7c7c7c";
+            },
+            handle_start:function(){
+                localStorage.setItem('read',true);
+                window.location='./problem.html';
             }
         }
     })

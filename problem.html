@@ -1,0 +1,100 @@
+---
+layout: show
+permalink: /problem.html
+---
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+    <link rel="stylesheet" href="./assets/css/problem.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="mask" style="position: absolute; top:0;left:0;width:100vw;height:100vh;background-color: white;"
+            v-if="notloaded"></div>
+        <el-card class="box-card">
+            {%raw%}
+            <el-progress color="#5cb87a" id="Pbar" :percentage="parseInt(current_id/problemlist.length*100)">
+            </el-progress>
+            <div v-if="current_id < problemlist.length" class="problem-area">
+                <h3>{{current_id+1}}/{{problemlist.length}}：{{problemlist[current_id].title}}</h3>
+                <el-button v-for="select in problemlist[current_id].selection" :key="select.content"
+                    :data-id="select.value" type="primary" plain @click="handle_select" class="select-item"
+                    id="select_a">
+                    {{select.content}}
+                </el-button>
+            </div>
+            <div v-else class="finish-area">
+                <i class="el-icon-success success-icon"></i>
+                <h1 class="hint-font">恭喜你，你完成全部题目</h1>
+                <div style="margin:10px 0;">
+                    <el-input placeholder="输入你的昵称(可选)" v-model="nickname">
+                        <template slot="prepend">我叫</template>
+                    </el-input>
+                </div>
+                <el-button type="success" @click="handle_generate">点我生成结果图</el-button>
+            </div>
+            {%endraw%}
+        </el-card>
+    </div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            notloaded: false,
+            problemlist: JSON.parse('{{site.data.problemlist | jsonify }}'),
+            current_id: 0,
+            nickname: '',
+        },
+        methods: {
+            handle_select: function (event) {
+                if (this.current_id == 0) {
+                    localStorage.clear();
+                    localStorage.setItem('read', true);
+                }
+                var weight = event.target.dataset.id;
+                var original = localStorage.getItem(weight);
+                if (original !== null && original !== undefined) {
+                    original = parseInt(original) + 1 + Math.random() / 4 - 0.125;
+                } else {
+                    original = 1 + Math.random() / 4 - 0.125;
+                }
+                localStorage.setItem(weight, original);
+                this.current_id += 1;
+            },
+            handle_generate: function () {
+                localStorage.setItem('nickname', this.nickname);
+                this.$message.error('剩下的没做完，您回去等着吧');
+            },
+            onload: function () {
+                var is_read = localStorage.getItem('read');
+                if (!is_read || is_read === null || is_read === undefined) {
+                    this.$alert('你不是正常流程过来的！！！(╬▔皿▔)╯\n五秒后自动返回\n\n', '免责声明！', {
+                        confirmButtonText: '我错了',
+                        showClose: false,
+                        callback: action => {
+                            history.back(-1);
+                        }
+                    });
+                    setTimeout(() => {
+                        history.back(-1);
+                    }, 5000);
+                }
+            }
+        }
+    })
+    window.onload = app.onload();
+</script>
+
+</html>

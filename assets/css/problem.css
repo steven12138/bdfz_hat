@@ -1,0 +1,70 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#app {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fafafa;
+    background: linear-gradient(rgba(255, 255, 255, 0.733), rgba(211, 211, 211, 0.822)), url(https://s1.ax1x.com/2020/07/10/UKVAPI.jpg) no-repeat;
+    background-size: cover;
+}
+
+.text {
+    font-size: 14px;
+}
+
+.item {
+    padding: 18px 0;
+}
+
+.box-card {
+    margin: 5px;
+    width: 420px !important;
+    /* background-color: rebeccapurple; */
+}
+
+
+#Pbar {
+    border-radius: 10px;
+    border: 2px solid rgba(179, 179, 179, 0.13);
+    padding: 5px;
+    padding-top: 4px;
+    padding-left: 20px;
+    padding-right: 0;
+}
+
+.problem-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.select-item {
+    margin: 5px !important;
+}
+
+.select-item {
+    text-align: left !important;
+}
+
+.finish-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-icon {
+    font-size: 10em;
+    color: #67C23A;
+    margin-top: 10px;
+}
+
+.hint-font {
+    text-align: center;
+    font-weight: 400;
+}
