@@ -80,7 +80,7 @@ permalink: /problem.html
             onload: function () {
                 var is_read = localStorage.getItem('read');
                 if (!is_read || is_read === null || is_read === undefined) {
-                    this.$alert('你不是正常流程过来的！！！(╬▔皿▔)╯\n五秒后自动返回\n\n', '免责声明！', {
+                    this.$alert('你不是正常流程过来的！！！(╬▔皿▔)╯ 五秒后自动返回', '免责声明！', {
                         confirmButtonText: '我错了',
                         showClose: false,
                         callback: action => {
